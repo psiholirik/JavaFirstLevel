@@ -1,3 +1,9 @@
+/**
+ * Java. Level 1. Lesson 1 Homework
+ *
+ * @author Rubtsov Artem
+ * @version dated Nov 21 2018
+ */
 public class FirstLesson {
   //1
   public static void main(String[] args) {
