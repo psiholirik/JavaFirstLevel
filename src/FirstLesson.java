@@ -48,11 +48,12 @@ public class FirstLesson {
   }
   //5
   static void printPositiveOrNegative(int i) {
-    if (i >= 0) {
-      System.out.println(i + " is positive");
-    } else {
-      System.out.println(i + " is negative");
-    }
+//    if (i >= 0) {
+//      System.out.println(i + " is positive");
+//    } else {
+//      System.out.println(i + " is negative");
+//    }
+    System.out.println(i + " is " + ((i < 0)? "Negative" : "Positive"));
   }
   //6
   static boolean isNegative(int i) {
