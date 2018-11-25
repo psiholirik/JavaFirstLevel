@@ -17,15 +17,15 @@ public class SecondLesson {
 
     //first task test
     System.out.println("first task test");
-    System.out.println(Arrays.toString(invertArray()) + "\n");
+    System.out.println(Arrays.toString(invertArray(new int[]{1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0})) + "\n");
 
     //second task test
     System.out.println("second task test");
-    System.out.println(Arrays.toString(fillArray()) + "\n");
+    System.out.println(Arrays.toString(fillArray(new int[8])) + "\n");
 
     //third task test
     System.out.println("third task test");
-    System.out.println(Arrays.toString(changeArray()) + "\n");
+    System.out.println(Arrays.toString(changeArray(new int[] {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1})) + "\n");
 
     //fourth task test
     System.out.println("fourth task test");
@@ -34,13 +34,15 @@ public class SecondLesson {
 
     //fifth task test
     System.out.println("fifth task test");
-    findMinMaxElements(thirdArray);
+    System.out.println(findMinElements(thirdArray));
+    System.out.println(findMaxElements(thirdArray));
 
     //sixth task test
     System.out.println("sixth task test");
     System.out.println("the sum of the left and right sides are equal? " + checkBalance(thirdArray) + "\n");
     System.out.println("the sum of the left and right sides are equal? " + checkBalance(fourthArray) + "\n");
     System.out.println("the sum of the left and right sides are equal? " + checkBalance(fifthArray) + "\n");
+    System.out.println("the sum of the left and right sides are equal? " + checkBalance(new int[] {10, 1, 2, 3, 4}) + "\n");
 
     //seventh task test
     System.out.println("seventh task test");
@@ -51,8 +53,7 @@ public class SecondLesson {
 
   }
   //1
-  static int[] invertArray() {
-    int[] array = {1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0};
+  static int[] invertArray(int[] array) {
     for (int i = 0; i < array.length; i++) {
       if (array[i] == 0) {
         array[i] = 1;
@@ -64,8 +65,7 @@ public class SecondLesson {
   }
 
   //2
-  static int[] fillArray() {
-    int[] array = new int[8];
+  static int[] fillArray(int[] array) {
     for (int i = 1; i < array.length; i++) {
         array[i] = array[i-1] + 3;
     }
@@ -73,9 +73,7 @@ public class SecondLesson {
   }
 
   //3
-  static int[] changeArray() {
-    int[] array = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
-
+  static int[] changeArray(int[] array) {
     for (int i = 0; i < array.length; i++) {
       if (array[i] < 6) {
         array[i] = array[i] * 2;
@@ -110,22 +108,28 @@ public class SecondLesson {
     System.out.println();
   }
 
-  //5
-  static void findMinMaxElements(int[] array) {
+  //5.1
+  static int findMinElements(int[] array) {
     int min = array[0];
-    int max = array[0];
 
     for (int anArray : array) {
       if (anArray < min) {
         min = anArray;
       }
+    }
+    return min;
+  }
+
+  //5.2
+  static int findMaxElements(int[] array) {
+    int max = array[0];
+
+    for (int anArray : array) {
       if (anArray > max) {
         max = anArray;
       }
     }
-    //for test
-    System.out.println("min element = " + min);
-    System.out.println("max element = " + max + "\n");
+    return max;
   }
 
   //6
