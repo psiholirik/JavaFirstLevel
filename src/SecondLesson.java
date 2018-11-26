@@ -136,17 +136,26 @@ public class SecondLesson {
     if (array.length < 2) {
       return false;
     }
-    int sum1 = 0, sum2 = 0;
-    //rounding up
-    int secondPartStartPoint = (int) Math.round((double) array.length/2);
 
-    for (int i = 0; i < secondPartStartPoint; i++) {
-      sum1 += array[i];
+    int firstElement = 1;
+    int lastElement = array.length - 1;
+    int sumRight = 0;
+    int sumLeft = array[0];
+
+    for (int i = 1; i < array.length; i++) {
+      sumRight += array[i];
     }
-    for (; secondPartStartPoint < array.length; secondPartStartPoint++) {
-      sum2 += array[secondPartStartPoint];
+
+    while(firstElement < lastElement) {
+      if(sumLeft == sumRight) {
+        return true;
+      } else {
+        sumLeft = sumLeft + array[firstElement];
+        sumRight = sumRight - array[firstElement];
+        firstElement++;
+      }
     }
-    return sum1 == sum2;
+    return false;
   }
 
   //7
