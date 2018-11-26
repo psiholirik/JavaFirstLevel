@@ -29,8 +29,10 @@ public class SecondLesson {
 
     //fourth task test
     System.out.println("fourth task test");
-    printTwoDimensionalArray(fillDiagonal(firstArray));
-    printTwoDimensionalArray(fillDiagonal(secondArray));
+    fillDiagonal(firstArray);
+    printTwoDimensionalArray(firstArray);
+    fillDiagonal(secondArray);
+    printTwoDimensionalArray(secondArray);
 
     //fifth task test
     System.out.println("fifth task test");
@@ -75,15 +77,13 @@ public class SecondLesson {
   //3
   static int[] changeArray(int[] array) {
     for (int i = 0; i < array.length; i++) {
-      if (array[i] < 6) {
-        array[i] = array[i] * 2;
-      }
+      array[i] = array[i] < 6 ? array[i] * 2: array[i];
     }
     return array;
   }
 
   //4
-  static int[][] fillDiagonal(int[][] array) {
+  static void fillDiagonal(int[][] array) {
     for (int i = 0; i < array.length; i++) {
       for (int j = 0; j < array.length; j++) {
         if(i == j) {
@@ -94,7 +94,6 @@ public class SecondLesson {
         }
       }
     }
-    return array;
   }
 
   //print two-dimensional array
