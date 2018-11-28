@@ -23,13 +23,12 @@ public class ThirdLessonGuessTheWord {
   static String getRandomWord() {
     String secretWord;
     int element;
+    int amountOfElements = array.length;
 
     Random random = new Random();
-    element = random.nextInt(25);
+    element = random.nextInt(amountOfElements);
 
     secretWord = array[element];
-    //for test
-    System.out.println(secretWord);
 
     return secretWord;
   }

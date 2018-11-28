@@ -30,8 +30,6 @@ public class ThirdLessonGuessTheNumber {
     int number;
     Random random = new Random();
     number = random.nextInt(10);
-    //for test
-    //System.out.println(number);
     return number;
   }
 
