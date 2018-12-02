@@ -9,11 +9,12 @@ import java.util.Scanner;
 
 class TicTacToe {
 
-  final int SIZE = 3;
   final char DOT_X = 'x';
   final char DOT_O = 'o';
   final char DOT_EMPTY = '.';
-  char[][] map = new char[SIZE][SIZE];
+  int dotToWin;
+  int fieldSize;
+  char[][] map;
   Scanner sc = new Scanner(System.in);
   Random rand = new Random();
 
@@ -49,14 +50,16 @@ class TicTacToe {
   }
 
   void initMap() {
-    for (int i = 0; i < SIZE; i++)
-      for (int j = 0; j < SIZE; j++)
+    setFieldSizeAndRules();
+    map = new char[fieldSize][fieldSize];
+    for (int i = 0; i < fieldSize; i++)
+      for (int j = 0; j < fieldSize; j++)
         map[i][j] = DOT_EMPTY;
   }
 
   void printMap() {
-    for (int i = 0; i < SIZE; i++) {
-      for (int j = 0; j < SIZE; j++)
+    for (int i = 0; i < fieldSize; i++) {
+      for (int j = 0; j < fieldSize; j++)
         System.out.print(map[i][j] + " ");
       System.out.println();
     }
@@ -66,7 +69,7 @@ class TicTacToe {
   void humanTurn() {
     int x, y;
     do {
-      System.out.println("Enter X and Y (1..3):");
+      System.out.println("Enter X and Y (1.." + fieldSize + "):");
       x = sc.nextInt() - 1;
       y = sc.nextInt() - 1;
     } while (!isCellValid(x, y));
@@ -76,8 +79,8 @@ class TicTacToe {
   void aiTurn() {
     int x, y;
     do {
-      x = rand.nextInt(SIZE);
-      y = rand.nextInt(SIZE);
+      x = rand.nextInt(fieldSize);
+      y = rand.nextInt(fieldSize);
     } while (!isCellValid(x, y));
     map[y][x] = DOT_O;
   }
@@ -91,7 +94,7 @@ class TicTacToe {
           countDots++;
         }
       }
-      if (countDots == 3) {
+      if (countDots == dotToWin) {
         return true;
       } else {
         countDots = 0;
@@ -104,7 +107,7 @@ class TicTacToe {
           countDots++;
         }
       }
-      if (countDots == 3) {
+      if (countDots == dotToWin) {
         return true;
       } else {
         countDots = 0;
@@ -124,20 +127,33 @@ class TicTacToe {
         }
       }
     }
-    return countDots == 3;
+    return countDots == dotToWin;
   }
 
   boolean isMapFull() {
-    for (int i = 0; i < SIZE; i++)
-      for (int j = 0; j < SIZE; j++)
+    for (int i = 0; i < fieldSize; i++)
+      for (int j = 0; j < fieldSize; j++)
         if (map[i][j] == DOT_EMPTY)
           return false;
     return true;
   }
 
   boolean isCellValid(int x, int y) {
-    if (x < 0 || y < 0 || x >= SIZE || y >= SIZE)
+    if (x < 0 || y < 0 || x >= fieldSize || y >= fieldSize)
       return false;
     return map[y][x] == DOT_EMPTY;
+  }
+
+  void setFieldSizeAndRules() {
+    System.out.print("Input field size: ");
+    fieldSize = sc.nextInt();
+    System.out.print("Input dot count to win: ");
+    while (true) {
+      if(dotToWin == 0 || dotToWin > fieldSize) {
+        dotToWin = sc.nextInt();
+      } else {
+        break;
+      }
+    }
   }
 }
