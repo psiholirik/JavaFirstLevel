@@ -4,6 +4,7 @@
  * @author Artem Rubtsov
  * @version dated Dec 02, 2018
  */
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -92,42 +93,52 @@ class TicTacToe {
       for (int j = 0; j < map.length; j++) {
         if (aMap[j] == dot) {
           countDots++;
+          if (countDots >= dotToWin) {
+            return true;
+          }
+        } else {
+          countDots = 0;
         }
       }
-      if (countDots == dotToWin) {
-        return true;
-      } else {
-        countDots = 0;
-      }
+      countDots = 0;
     }
     //check vertical
     for (int i = 0; i < map.length; i++) {
       for (char[] aMap : map) {
         if (aMap[i] == dot) {
           countDots++;
+          if (countDots >= dotToWin) {
+            return true;
+          }
+        } else {
+          countDots = 0;
         }
       }
-      if (countDots == dotToWin) {
-        return true;
+      countDots = 0;
+    }
+    //check first diagonal
+    for (int i = 0; i < map.length; ++i) {
+      if (map[i][i] == dot) {
+        countDots++;
+        if (countDots >= dotToWin) {
+          return true;
+        }
       } else {
         countDots = 0;
       }
     }
-    //check diagonal
-    for(int i = 0; i < map.length; ++i) {
-      for(int j = 0; j < map.length; ++j) {
-        if (i == j) {
-          if (map[i][j] == dot) {
-            countDots++;
-          }
-        } else if (map.length - i - 1 == j) {
-          if (map[i][j] == dot) {
-            countDots++;
-          }
+    //check second diagonal
+    for (int i = 0; i < map.length; ++i) {
+      if (map[fieldSize - i - 1][i] == dot) {
+        countDots++;
+        if (countDots >= dotToWin) {
+          return true;
         }
+      } else {
+        countDots = 0;
       }
     }
-    return countDots == dotToWin;
+    return false;
   }
 
   boolean isMapFull() {
@@ -149,7 +160,7 @@ class TicTacToe {
     fieldSize = sc.nextInt();
     System.out.print("Input dot count to win: ");
     while (true) {
-      if(dotToWin == 0 || dotToWin > fieldSize) {
+      if (dotToWin == 0 || dotToWin > fieldSize) {
         dotToWin = sc.nextInt();
       } else {
         break;
