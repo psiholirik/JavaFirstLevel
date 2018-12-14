@@ -14,10 +14,6 @@ public class Lesson7 {
     };
     Plate plate = new Plate(100);
 
-    cats[0] = new Cats("Барсик", 120);
-    cats[1] = new Cats("Васька", 35);
-    cats[2] = new Cats("Тяпка", 40);
-
     for (Cats cat : cats) {
       cat.eat(plate, cat);
       cat.satietyInfo();
