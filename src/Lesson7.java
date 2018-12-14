@@ -7,7 +7,11 @@
 
 public class Lesson7 {
   public static void main(String[] args) {
-    Cats[] cats = new Cats[3];
+    Cats[] cats = {
+            new Cats("Барсик", 120),
+            new Cats("Васька", 35),
+            new Cats("Тяпка", 40)
+    };
     Plate plate = new Plate(100);
 
     cats[0] = new Cats("Барсик", 120);
